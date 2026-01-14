@@ -1,0 +1,30 @@
+{
+	"name": "node-setup-app",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./bin/www",
+	"scripts": {
+		"start": "node ./bin/www",
+		"lint": "eslint .",
+		"check": "prettier --check .",
+		"format": "prettier --write .",
+		"lint:check": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"lint:strict": "eslint --max-warnings=0 ."
+	},
+	"dependencies": {
+		"express": "^4.17.2",
+    "cookie-parser": "^1.4.6",
+    "helmet": "^7.0.0",
+    "dotenv": "^16.4.7"
+	},
+	"devDependencies": {
+		"eslint": "^8.25.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1"
+	}
+}
