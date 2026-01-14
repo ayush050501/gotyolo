@@ -1,0 +1,1 @@
+npx sequelize-cli migration:generate --name "name_of_migration"

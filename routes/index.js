@@ -1,8 +1,9 @@
 const express = require('express');
+const db = require('../models');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hello World!');
+router.get('/', async (req, res) => {
+    res.json({ message: 'Hello World!' });
 });
 
 module.exports = router;
