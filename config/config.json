@@ -3,21 +3,21 @@
     "username": "root",
     "password": "rootadmin",
     "database": "gotyolo",
-    "host": "127.0.0.1",
+    "host": "database",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "rootadmin",
     "database": "gotyolo",
-    "host": "127.0.0.1",
+    "host": "database",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "rootadmin",
     "database": "gotyolo",
-    "host": "127.0.0.1",
+    "host": "database",
     "dialect": "mysql"
   }
 }
