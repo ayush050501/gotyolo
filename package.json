@@ -13,10 +13,12 @@
 		"lint:strict": "eslint --max-warnings=0 ."
 	},
 	"dependencies": {
+		"cookie-parser": "^1.4.6",
+		"dotenv": "^16.4.7",
 		"express": "^4.17.2",
-    "cookie-parser": "^1.4.6",
-    "helmet": "^7.0.0",
-    "dotenv": "^16.4.7"
+		"helmet": "^7.0.0",
+		"mysql2": "^3.16.0",
+		"sequelize": "^6.37.7"
 	},
 	"devDependencies": {
 		"eslint": "^8.25.0",
@@ -25,6 +27,7 @@
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"lint-staged": "^13.0.3",
-		"prettier": "^2.7.1"
+		"prettier": "^2.7.1",
+		"sequelize-cli": "^6.6.5"
 	}
 }
