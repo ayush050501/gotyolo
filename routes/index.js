@@ -1,5 +1,7 @@
 const express = require('express');
-const { getAllTrips, getTripById, createTrip } = require('../services');
+const {
+    getAllTrips, getTripById, createTrip, bookTrip
+} = require('../services');
 
 const router = express.Router();
 
@@ -58,16 +60,13 @@ router.post('/trips', async (req, res) => {
 });
 
 router.post('/trips/:id/book', async (req, res) => {
-    const {
-        destination,
-        min_rice,
-        max_rice,
-        start_date,
-        category,
-        sort_by,
-        sort_order,
-    } = req.body;
-    res.json({ message: 'Hello World!' });
+    const { id } = req.params;
+    const bookInfo = req.body;
+    const data = await bookTrip(id, bookInfo);
+    if (data.success) {
+        return res.status(200).json(data);
+    }
+    return res.status(400).json(data);
 });
 
 module.exports = router;

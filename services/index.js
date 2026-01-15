@@ -117,9 +117,55 @@ const createTrip = async (params) => {
     }
 };
 
+const bookTrip = async (id, bookInfo) => {
+    const transaction = await db.sequelize.transaction();
+    try {
+        const trip = await db.trip.findOne({
+            where: {
+                id
+            },
+            transaction
+        });
+        if (!trip) {
+            return { success: false, data: 'Trip not found' };
+        }
+        if (trip.available_seats == 0) {
+            return { success: false, data: 'Trip is full' };
+        }
+        if (trip.available_seats < bookInfo?.seats_booked) {
+            return { success: false, data: `Only ${ trip.available_seats } seats are available` };
+        }
+        const data = await db.booking.create({
+            tripId: id,
+            userId: 1,
+            seats_booked: bookInfo?.seats_booked,
+            total_price: trip.price * bookInfo?.seats_booked,
+            status: 'confirmed'
+        }, {
+            transaction
+        });
+
+        await db.trip.update({
+            available_seats: trip.available_seats - bookInfo?.seats_booked
+        }, {
+            where: {
+                id
+            },
+            transaction
+        });
+
+        await transaction.commit();
+        return { success: true, data };
+    } catch (error) {
+        console.log(error);
+        await transaction.rollback();
+        return { success: false, data: error?.message };
+    }
+};
 
 module.exports = {
     getAllTrips,
     getTripById,
-    createTrip
+    createTrip,
+    bookTrip
 };
