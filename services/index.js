@@ -125,7 +125,8 @@ const bookTrip = async (id, bookInfo) => {
     try {
         const trip = await db.trip.findOne({
             where: {
-                id
+                id,
+                status: 'published'
             },
             transaction
         });
