@@ -4,20 +4,23 @@
     "password": "rootadmin",
     "database": "gotyolo",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": true
   },
   "test": {
     "username": "root",
     "password": "rootadmin",
     "database": "gotyolo",
     "host": "database",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": true
   },
   "production": {
     "username": "root",
     "password": "rootadmin",
     "database": "gotyolo",
     "host": "database",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": true
   }
 }
