@@ -1,5 +1,4 @@
 const express = require('express');
-const db = require('../models');
 const { getAllTrips, getTripById, createTrip } = require('../services');
 
 const router = express.Router();
