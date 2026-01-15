@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../models');
-const { getAllTrips, getTripById } = require('../services');
+const { getAllTrips, getTripById, createTrip } = require('../services');
 
 const router = express.Router();
 
@@ -51,16 +51,13 @@ router.get('/trips/:id', async (req, res) => {
 });
 
 router.post('/trips', async (req, res) => {
-    const {
-        destination,
-        min_rice,
-        max_rice,
-        start_date,
-        category,
-        sort_by,
-        sort_order,
-    } = req.body;
-    res.json({ message: 'Hello World!' });
+    const params = req.body;
+    console.log(params);
+    const data = await createTrip(params);
+    if (data.success) {
+        return res.status(200).json(data);
+    }
+    return res.status(400).json(data);
 });
 
 router.post('/trips/:id/book', async (req, res) => {

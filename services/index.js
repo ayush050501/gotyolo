@@ -87,8 +87,39 @@ const getTripById = async (id) => {
     }
 };
 
+const createTrip = async (params) => {
+    try {
+        if (!params?.title || !params?.destination || !params?.price || !params?.start_date || !params?.end_date || !params?.categories?.length || !params?.max_capacity || !params?.available_seats) {
+            return { success: false, data: 'Missing required fields to create a new trip' };
+        }
+
+        let tripData = await db.trip.create(params);
+
+        const tripCategories = params.categories.map((category) => ({
+            tripId: tripData.id,
+            categoryId: category?.id
+        }));
+
+        const tripCategoriesData = await db.trip_category.bulkCreate(tripCategories, {
+            ignoreDuplicates: true,
+            returning: true
+        });
+
+        tripData = {
+            ...tripData,
+            trip_category: tripCategoriesData
+        };
+
+        return { success: true, data: tripData };
+    } catch (error) {
+        console.log(error);
+        return { success: false, data: error?.message };
+    }
+};
+
 
 module.exports = {
     getAllTrips,
-    getTripById
+    getTripById,
+    createTrip
 };
