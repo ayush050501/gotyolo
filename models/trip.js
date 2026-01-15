@@ -59,14 +59,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       max_capacity: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           min: 1,
         },
       },
       available_seats: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           min: 0,

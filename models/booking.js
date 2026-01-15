@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   booking.init(
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
       },
       tripId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'trips',
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       userId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'users',
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       seats_booked: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           min: 1,
