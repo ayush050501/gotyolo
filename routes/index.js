@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../models');
-const { getAllTrips } = require('../services');
+const { getAllTrips, getTripById } = require('../services');
 
 const router = express.Router();
 
@@ -37,13 +37,17 @@ router.get('/trips', async (req, res) => {
 
     if (data.success) {
         return res.status(200).json(data);
-    } else {
-        return res.status(400).json(data);
     }
+    return res.status(400).json(data);
 });
 
 router.get('/trips/:id', async (req, res) => {
-    res.json({ message: 'Hello World!' });
+    const { id } = req.params;
+    const data = await getTripById(id);
+    if (data.success) {
+        return res.status(200).json(data);
+    }
+    return res.status(400).json(data);
 });
 
 router.post('/trips', async (req, res) => {

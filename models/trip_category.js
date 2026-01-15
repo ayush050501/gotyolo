@@ -12,14 +12,10 @@ module.exports = (sequelize, DataTypes) => {
 
     trip_category.init(
         {
-            id: {
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
-            },
             tripId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                primaryKey: true,
                 references: {
                     model: 'trips',
                     key: 'id',
@@ -28,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             categoryId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                primaryKey: true,
                 references: {
                     model: 'categories',
                     key: 'id',
