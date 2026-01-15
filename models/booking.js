@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
             modelName: 'booking',
             tableName: 'bookings',
             timestamps: true,
-            createdAt: 'booked_at',
-            updatedAt: 'updated_at',
+            createdAt: 'bookedAt',
+            updatedAt: 'updatedAt',
         }
     );
 
