@@ -5,8 +5,6 @@ const { getAllTrips, getTripById, createTrip } = require('../services');
 const router = express.Router();
 
 router.get('/test', async (req, res) => {
-    const data = await db.demo_table.findAll();
-    console.log(data);
     res.json({ message: 'Hello World!' });
 });
 
