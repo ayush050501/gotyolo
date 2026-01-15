@@ -27,8 +27,6 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.bulkDelete('categories', {
-            slug: ['adventure', 'cultural', 'women-only', 'weekend', 'international'],
-        });
+        await queryInterface.sequelize.query('DELETE FROM categories WHERE slug IN ("adventure", "cultural", "women-only", "weekend", "international")');
     },
 };
