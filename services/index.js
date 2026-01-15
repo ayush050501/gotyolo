@@ -20,18 +20,29 @@ const getAllTrips = async (params) => {
             where += ` AND categories.slug = :category`;
         }
         if (params.sort_by) {
+            if (params?.sort_by?.toLowerCase() !== 'price' && params?.sort_by?.toLowerCase() !== 'start_date') {
+                return { success: false, error: 'Invalid sort_by parameter' };
+            }
             where += ` ORDER BY :sort_by`;
         }
         if (params.sort_order) {
+            if (params?.sort_order?.toLowerCase() !== 'asc' && params?.sort_order?.toLowerCase() !== 'desc') {
+                return { success: false, error: 'Invalid sort_order parameter' };
+            }
             where += ` :sort_order`;
         }
+
+        // instead of selecting all fields we can also define what fields we want to select
         const statement = `
-            SELECT trips.*
+            SELECT 
+                trips.*,
+                categories.slug AS category
             FROM trips
             JOIN trip_categories ON trips.id = trip_categories.tripId
             JOIN categories ON trip_categories.categoryId = categories.id
             ${ where }
         `;
+
 
         const data = await db.sequelize.query(statement, {
             type: db.sequelize.QueryTypes.SELECT,
