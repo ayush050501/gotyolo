@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             booking.belongsTo(models.trip);
 
-            booking.belongsTo(models.User);
+            booking.belongsTo(models.user);
         }
 
         isCancellable() {
