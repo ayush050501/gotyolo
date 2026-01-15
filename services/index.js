@@ -3,6 +3,7 @@ const db = require('../models');
 const getAllTrips = async (params) => {
     try {
         let where = 'WHERE status = \'published\'';
+        let order = '';
 
         if (params.destination) {
             where += ' AND destination = :destination';
@@ -23,13 +24,13 @@ const getAllTrips = async (params) => {
             if (params?.sort_by?.toLowerCase() !== 'price' && params?.sort_by?.toLowerCase() !== 'start_date') {
                 return { success: false, error: 'Invalid sort_by parameter' };
             }
-            where += ' ORDER BY :sort_by';
-        }
-        if (params.sort_order) {
-            if (params?.sort_order?.toLowerCase() !== 'asc' && params?.sort_order?.toLowerCase() !== 'desc') {
-                return { success: false, error: 'Invalid sort_order parameter' };
+            order += ' ORDER BY :sort_by';
+            if (params.sort_order) {
+                if (params?.sort_order?.toLowerCase() !== 'asc' && params?.sort_order?.toLowerCase() !== 'desc') {
+                    return { success: false, error: 'Invalid sort_order parameter' };
+                }
+                order += ' :sort_order';
             }
-            where += ' :sort_order';
         }
 
         // instead of selecting all fields we can also define what fields we want to select
@@ -47,6 +48,7 @@ const getAllTrips = async (params) => {
             JOIN categories ON trip_categories.categoryId = categories.id
             ${ where }
             GROUP BY trips.id
+            ${ order }
         `;
 
 
