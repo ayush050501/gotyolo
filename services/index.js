@@ -24,12 +24,12 @@ const getAllTrips = async (params) => {
             if (params?.sort_by?.toLowerCase() !== 'price' && params?.sort_by?.toLowerCase() !== 'start_date') {
                 return { success: false, error: 'Invalid sort_by parameter' };
             }
-            order += ' ORDER BY :sort_by';
+            order += ` ORDER BY ${ params.sort_by } `;
             if (params.sort_order) {
                 if (params?.sort_order?.toLowerCase() !== 'asc' && params?.sort_order?.toLowerCase() !== 'desc') {
                     return { success: false, error: 'Invalid sort_order parameter' };
                 }
-                order += ' :sort_order';
+                order += params.sort_order.toLowerCase();
             }
         }
 
