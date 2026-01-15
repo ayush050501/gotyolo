@@ -9,6 +9,7 @@ RUN npm install
 COPY . .
 
 COPY entrypoint.sh .
+
 RUN chmod +x entrypoint.sh
 
 EXPOSE 5000
