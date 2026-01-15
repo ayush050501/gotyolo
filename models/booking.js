@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 defaultValue: 'pending',
             },
-            booked_at: {
+            bookedAt: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: DataTypes.NOW,
