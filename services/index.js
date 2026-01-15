@@ -41,7 +41,7 @@ const getAllTrips = async (params) => {
                 trips.price,
                 trips.start_date,
                 trips.destination,
-                categories.slug AS category
+                GROUP_CONCAT(categories.slug) AS categories
             FROM trips
             JOIN trip_categories ON trips.id = trip_categories.tripId
             JOIN categories ON trip_categories.categoryId = categories.id
